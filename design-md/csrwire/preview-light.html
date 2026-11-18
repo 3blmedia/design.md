@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>3BL-csrwire-reportalert · preview-light</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --canvas: #FFFFFF;
+      --ink: #404040;
+      --muted: #485F83;
+      --primary: #00ADEE;
+      --on-primary: #FFFFFF;
+      --surface: #FFFFFF;
+      --border: #485F83;
+      --accent-2: #242C3A;
+      --accent-3: #98BCCD;
+      --font: 'IBM Plex Sans', system-ui, sans-serif;
+      --serif: 'IBM Plex Serif', Georgia, serif;
+      --radius: 12px;
+      --radius-pill: 22px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background: var(--canvas);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+    header.hero {
+      padding: 48px 32px 32px;
+      border-bottom: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
+    }
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 8px;
+    }
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 500;
+      line-height: 1.15;
+      margin: 0 0 12px;
+      max-width: 18ch;
+    }
+    .desc {
+      max-width: 62ch;
+      color: var(--muted);
+      margin: 0 0 20px;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .pill strong { color: var(--ink); font-weight: 600; }
+    main {
+      padding: 32px;
+      display: grid;
+      gap: 40px;
+      max-width: 1100px;
+    }
+    section h2 {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin: 0 0 16px;
+      color: var(--muted);
+    }
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .swatch {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 10px;
+      background: var(--surface);
+      border: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+      border-radius: 10px;
+    }
+    .chip {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+      flex: none;
+    }
+    .swatch code {
+      display: block;
+      font-size: 12px;
+      color: var(--ink);
+    }
+    .swatch span {
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .type-row {
+      display: grid;
+      gap: 18px;
+    }
+    .type-sample .label {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .display {
+      font-family: var(--font);
+      font-size: clamp(40px, 7vw, 72px);
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+    }
+    .headline {
+      font-family: var(--serif);
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    .body {
+      font-size: 16px;
+      max-width: 60ch;
+    }
+    .caption {
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .btn {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--ink);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+    .btn-soft {
+      background: var(--surface);
+      color: var(--ink);
+      border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+      border-radius: 8px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      font-family: var(--serif);
+      font-weight: 600;
+    }
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .bars {
+      display: grid;
+      gap: 10px;
+      max-width: 420px;
+    }
+    .bar {
+      height: 12px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--border) 35%, transparent);
+      overflow: hidden;
+    }
+    .bar > span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+    }
+    .inputs {
+      display: grid;
+      gap: 12px;
+      max-width: 360px;
+    }
+    label {
+      display: grid;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    input, select {
+      font: inherit;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+      background: var(--surface);
+      color: var(--ink);
+    }
+    input:focus, select:focus {
+      outline: 2px solid color-mix(in srgb, var(--primary) 55%, transparent);
+      outline-offset: 1px;
+    }
+    footer {
+      padding: 24px 32px 48px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    footer a { color: var(--primary); }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <p class="eyebrow">csrwire · preview-light</p>
+    <h1>3BL-csrwire-reportalert</h1>
+    <p class="desc">Shared editorial docs for CSRwire (dark) and ReportAlert (light). CSRwire: #0B0F16, mist link #98BCCD, text #F1F1F0 / #d6d6d6, IBM Plex Sans light and Serif body, rounded photo cards. ReportAlert: light page, Proxima Nova UI, slate #242C3A / #485F83, hover #00ADEE, IBM Plex Serif for reading. Same card structure, opposite light and dark values.</p>
+    <div class="meta">
+      <span class="pill"><strong>Mode</strong> light</span>
+      <a class="pill" href="./preview-dark.html">Open preview-dark</a>
+      <a class="pill" href="./DESIGN.md">DESIGN.md</a>
+    </div>
+  </header>
+  <main>
+    <section>
+      <h2>Colors</h2>
+      <div class="swatches">
+<div class="swatch"><div class="chip" style="background:#0B0F16"></div><div><code>csr-stage</code><span>#0B0F16</span></div></div>
+<div class="swatch"><div class="chip" style="background:#1e2531"></div><div><code>csr-panel</code><span>#1e2531</span></div></div>
+<div class="swatch"><div class="chip" style="background:#d6d6d6"></div><div><code>csr-text</code><span>#d6d6d6</span></div></div>
+<div class="swatch"><div class="chip" style="background:#F1F1F0"></div><div><code>csr-wash</code><span>#F1F1F0</span></div></div>
+<div class="swatch"><div class="chip" style="background:#98BCCD"></div><div><code>csr-link</code><span>#98BCCD</span></div></div>
+<div class="swatch"><div class="chip" style="background:#F1F1F0"></div><div><code>csr-hover</code><span>#F1F1F0</span></div></div>
+<div class="swatch"><div class="chip" style="background:#0B0F16"></div><div><code>csr-footer</code><span>#0B0F16</span></div></div>
+<div class="swatch"><div class="chip" style="background:#404040"></div><div><code>ra-ink</code><span>#404040</span></div></div>
+<div class="swatch"><div class="chip" style="background:#242C3A"></div><div><code>ra-nav</code><span>#242C3A</span></div></div>
+<div class="swatch"><div class="chip" style="background:#485F83"></div><div><code>ra-blue</code><span>#485F83</span></div></div>
+<div class="swatch"><div class="chip" style="background:#00ADEE"></div><div><code>ra-hover</code><span>#00ADEE</span></div></div>
+<div class="swatch"><div class="chip" style="background:#FFFFFF"></div><div><code>ra-canvas</code><span>#FFFFFF</span></div></div>
+<div class="swatch"><div class="chip" style="background:#98BCCD"></div><div><code>mist</code><span>#98BCCD</span></div></div>
+<div class="swatch"><div class="chip" style="background:#F1F1F0"></div><div><code>wash</code><span>#F1F1F0</span></div></div>
+<div class="swatch"><div class="chip" style="background:#AAFBAB"></div><div><code>economy</code><span>#AAFBAB</span></div></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Typography</h2>
+      <div class="type-row">
+        <div class="type-sample">
+          <div class="label">Display / 300</div>
+          <div class="display">Your story deserves more</div>
+        </div>
+        <div class="type-sample">
+          <div class="label">Headline / serif 600</div>
+          <div class="headline">We help companies tell stories that build trust.</div>
+        </div>
+        <div class="type-sample">
+          <div class="label">Body / 400</div>
+          <p class="body">Distribute corporate content to credible publishers. Track performance. Extend your team with guidance that improves the next update.</p>
+        </div>
+        <div class="type-sample">
+          <div class="label">Caption / uppercase</div>
+          <div class="caption">Our products · Focus · Studio</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Buttons</h2>
+      <div class="row">
+        <button class="btn btn-primary" type="button">Primary action</button>
+        <button class="btn btn-outline" type="button">Outline</button>
+        <button class="btn btn-ghost" type="button">Ghost</button>
+        <button class="btn btn-soft" type="button">Soft</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Cards</h2>
+      <div class="cards">
+        <article class="card">
+          <p class="caption">Publish</p>
+          <h3>Reach real audiences</h3>
+          <p>Trusted channels where decision-makers already pay attention.</p>
+        </article>
+        <article class="card">
+          <p class="caption">Measure</p>
+          <h3>Track performance</h3>
+          <p>Realtime dashboard, custom reports, peer benchmarks.</p>
+        </article>
+        <article class="card">
+          <p class="caption">Partner</p>
+          <h3>Extend your team</h3>
+          <p>Client success works beside yours on the next story.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Series / accents</h2>
+      <div class="bars">
+        <div class="bar"><span style="width:78%;background:var(--primary)"></span></div>
+        <div class="bar"><span style="width:56%;background:var(--accent-2)"></span></div>
+        <div class="bar"><span style="width:34%;background:var(--accent-3)"></span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Form</h2>
+      <div class="inputs">
+        <label>Email
+          <input type="email" placeholder="you@company.com" />
+        </label>
+        <label>Product
+          <select>
+            <option>Focus</option>
+            <option>Studio</option>
+            <option>AI Visibility</option>
+          </select>
+        </label>
+      </div>
+    </section>
+  </main>
+  <footer>
+    Generated from DESIGN.md frontmatter for <strong>csrwire</strong>.
+    Source: <a href="./DESIGN.md">DESIGN.md</a>
+  </footer>
+</body>
+</html>
